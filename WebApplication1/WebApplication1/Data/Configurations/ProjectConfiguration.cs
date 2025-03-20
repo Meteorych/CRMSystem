@@ -17,5 +17,10 @@ public class ProjectConfiguration : IEntityTypeConfiguration<Project>
             .WithMany(c => c.ManagedProjects)
             .HasForeignKey(pr => pr.ManagerId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder
+            .HasMany(pr => pr.ProjectComments)
+            .WithOne()
+            .HasForeignKey(pr => pr.ProjectId);
     }
 }

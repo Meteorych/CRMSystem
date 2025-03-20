@@ -7,7 +7,7 @@ public class HomeController(ILogger<HomeController> logger) : Controller
 {
     public IActionResult Index()
     {
-        return View();
+        return Redirect("/Project");
     }
 
     public IActionResult Privacy()

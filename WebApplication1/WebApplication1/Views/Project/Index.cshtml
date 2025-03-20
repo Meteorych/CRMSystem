@@ -1,0 +1,110 @@
+@using WebApplication1.Constants
+@model WebApplication1.Models.ProjectIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Projects</h1>
+
+@if (User.IsInRole(AuthConstants.AdminRole)) {
+    <p>
+        <a asp-action="Create">Create new project</a>
+    </p>
+}
+
+<ul class="nav nav-tabs" id="projectTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active-projects"
+                type="button" role="tab" aria-controls="active-projects" aria-selected="true">
+            Active Projects
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed-projects"
+                type="button" role="tab" aria-controls="completed-projects" aria-selected="false">
+            Completed Projects
+        </button>
+    </li>
+</ul>
+
+<!-- Tab Content -->
+<div class="tab-content mt-3" id="projectTabsContent">
+    <!-- Active Projects Tab -->
+    <div class="tab-pane fade show active" id="active-projects" role="tabpanel" aria-labelledby="active-tab">
+        @if (Model.ActiveProjects.Any())
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ActiveProjects.First().ProjectNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.ActiveProjects.First().Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.ActiveProjects.First().ProjectStage)</th>
+                    <th>@Html.DisplayNameFor(model => model.ActiveProjects.First().Manager)</th>
+                    <th>@Html.DisplayNameFor(model => model.ActiveProjects.First().Client)</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.ActiveProjects)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.ProjectNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ProjectStage)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Manager.UserName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Client.UserName)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No active projects available.</p>
+        }
+    </div>
+
+    <!-- Completed Projects Tab -->
+    <div class="tab-pane fade" id="completed-projects" role="tabpanel" aria-labelledby="completed-tab">
+        @if (Model.CompletedProjects.Any())
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.CompletedProjects.First().ProjectNumber)</th>
+                    <th>@Html.DisplayNameFor(model => model.CompletedProjects.First().Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.CompletedProjects.First().ProjectStage)</th>
+                    <th>@Html.DisplayNameFor(model => model.CompletedProjects.First().Manager)</th>
+                    <th>@Html.DisplayNameFor(model => model.CompletedProjects.First().Client)</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.CompletedProjects)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.ProjectNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ProjectStage)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Manager.UserName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Client.UserName)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No completed projects available.</p>
+        }
+    </div>
+</div>
