@@ -19,12 +19,16 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ManagerName" class="control-label">Manager name</label>
-                <select asp-for="ManagerName" class="form-control" asp-items="ViewBag.ManagerName"></select>
+                <label asp-for="ManagerName" class="control-label">
+                    Manager name
+                    <select asp-for="ManagerName" class="form-control" asp-items="ViewBag.ManagerName"></select>
+                </label>
             </div>
             <div class="form-group">
-                <label asp-for="ClientName" class="control-label">Client name</label>
-                <select asp-for="ClientName" class="form-control" asp-items="ViewBag.ClientName"></select>
+                <label asp-for="ClientName" class="control-label">
+                    Client name
+                    <select asp-for="ClientName" class="form-control" asp-items="ViewBag.ClientName"></select>
+                </label>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary"/>

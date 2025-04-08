@@ -10,39 +10,40 @@ namespace WebApplication1.Controllers;
 public class ProjectController(ApplicationDbContext context) : Controller
 {
     private const string UserName = "UserName";
-    
+
     public class CreateProjectDto
     {
         public required string ClientName { get; set; }
         public required string ManagerName { get; set; }
+
         [StringLength(100, MinimumLength = 2)]
         public required string Name { get; set; }
     }
-    
-    // GET: Project
-    public async Task<IActionResult> Index()
-    {
-        var roles = User.Claims 
-            .Where(c => c.Type == ClaimTypes.Role)
-            .Select(c => c.Value)
-            .ToList();
 
+    // GET: Project
+    public async Task<IActionResult> Index(string? searchTerm)
+    {
         var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
         IQueryable<Project> query = context.Projects
             .Include(p => p.Manager)
             .Include(p => p.Client);
 
-        if (!roles.Contains(AuthConstants.AdminRole))
+        if (!User.IsInRole(AuthConstants.AdminRole))
         {
-            if (roles.Contains(AuthConstants.ManagerRole))
+            if (User.IsInRole(AuthConstants.ManagerRole))
             {
                 query = query.Where(p => p.ManagerId == userId);
             }
-            else if (roles.Contains(AuthConstants.ClientRole))
+            else if (User.IsInRole(AuthConstants.ClientRole))
             {
                 query = query.Where(p => p.ClientId == userId);
             }
+        }
+
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            query = query.Where(p => p.Name.Contains(searchTerm));
         }
 
         var projects = await query.ToListAsync();
@@ -74,6 +75,7 @@ public class ProjectController(ApplicationDbContext context) : Controller
 
         var project = await context.Projects
             .Include(p => p.Client)
+            .Include(p => p.ProjectComments)
             .Include(p => p.Manager)
             .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -100,17 +102,17 @@ public class ProjectController(ApplicationDbContext context) : Controller
     [Authorize(Roles = AuthConstants.AdminRole)]
     public async Task<IActionResult> Create(CreateProjectDto createProjectDto)
     {
-        if (!ModelState.IsValid) 
+        if (!ModelState.IsValid)
             return BadRequest();
 
         var client = await context.Users.FirstAsync(u => u.UserName == createProjectDto.ClientName);
         var manager = await context.Users.FirstAsync(u => u.UserName == createProjectDto.ManagerName);
-        
+
         var maxProjectNumber = await context.Projects
             .AnyAsync()
             ? await context.Projects.MaxAsync(p => p.ProjectNumber)
-            : 0; 
-        
+            : 0;
+
         var project = new Project
         {
             Client = client,
@@ -126,7 +128,6 @@ public class ProjectController(ApplicationDbContext context) : Controller
         await context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Index));
-
     }
 
     // GET: Project/Edit/5
@@ -243,6 +244,77 @@ public class ProjectController(ApplicationDbContext context) : Controller
         await context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost]
+    [Authorize(Roles = AuthConstants.ClientRole)]
+    public async Task<IActionResult> SubmitTechTask(Guid projectId, [StringLength(1000, MinimumLength = 15)] string techTaskDescription, IFormFile? techTaskFile)
+    {
+        //TODO: Save file name
+        if (!ModelState.IsValid)
+            return BadRequest("Wrong arguments!");
+        
+        var project = await context.Projects
+            .Include(p => p.TechTask)
+            .Include(p => p.ProjectComments)
+            .FirstOrDefaultAsync(p => p.Id == projectId);
+
+        if (project == null) 
+            return NotFound();
+
+        project.ProjectComments.Add(new ProjectComment()
+        {
+            CommentStage = ProjectStage.TechTask,
+            CommentText = techTaskDescription,
+            UserId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!)
+        });
+
+        if (techTaskFile != null)
+        {
+            using var stream = new MemoryStream();
+            await techTaskFile.CopyToAsync(stream);
+            stream.Position = 0;
+
+            project.TechTask.File = stream.ToArray();
+        }
+
+        await context.SaveChangesAsync();
+
+        return RedirectToAction("Details", new { id = projectId });
+    }
+
+    [HttpPost]
+    [Authorize(Roles = AuthConstants.ClientRole)]
+    public async Task<IActionResult> ApproveTechTask(Guid projectId)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest("Wrong arguments!");
+        var project = await context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
+
+        if (project == null)
+            return NotFound();
+        
+        project.ProjectStage = ProjectStage.Script;
+        await context.SaveChangesAsync();
+
+        return RedirectToAction("Details", new { id = projectId });
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> DownloadTechTaskFile(Guid projectId)
+    {
+            var project = await context.Projects
+            .Include(p => p.TechTask)
+            .FirstOrDefaultAsync(p => p.Id == projectId);
+
+        if (project?.TechTask.File == null)
+            return NotFound();
+
+        var fileBytes = project.TechTask.File;
+        const string contentType = "application/octet-stream";
+        var fileName = $"TechTask_{project.ProjectNumber}.bin";
+
+        return File(fileBytes, contentType, fileName);
     }
 
     private bool ProjectExists(Guid id)

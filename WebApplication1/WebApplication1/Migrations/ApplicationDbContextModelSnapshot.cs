@@ -226,7 +226,6 @@ namespace WebApplication1.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ProjectNumber")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ProjectStage")
@@ -350,7 +349,8 @@ namespace WebApplication1.Migrations
                             b1.Property<byte[]>("File")
                                 .HasColumnType("BLOB");
 
-                            b1.Property<string>("TechTaskUrl")
+                            b1.Property<string>("FileName")
+                                .HasMaxLength(128)
                                 .HasColumnType("TEXT");
 
                             b1.HasKey("ProjectId");

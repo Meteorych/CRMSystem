@@ -3,6 +3,7 @@
 [Owned]
 public class TechTask
 {
-    public Uri? TechTaskUrl { get; set; }
+    [MaxLength(128)]
+    public string? FileName { get; set; }
     public byte[]? File { get; set; }
 }

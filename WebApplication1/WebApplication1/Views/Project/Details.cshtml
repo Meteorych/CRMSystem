@@ -1,48 +1,34 @@
 @model WebApplication1.Data.Models.Project
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Project Workflow";
+    var stage = Model.ProjectStage;
 }
 
-<h1>Details</h1>
+<h2>Project: @Model.Name</h2>
 
-<div>
-    <h4>Project</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProjectNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProjectNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProjectStage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProjectStage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Manager)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Manager.UserName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Client)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Client.UserName)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<partial name="_Stage1_TechTask" model = "Model" />
+
+@* <!-- Этап 2: Сценарии --> *@
+@* @if (stage >= ProjectStage.Script) *@
+@* { *@
+@*     <partial name="_Stage2_Scripts" for="Video" /> *@
+@* } *@
+@* *@
+@* <!-- Этап 3: Съемка --> *@
+@* @if (stage >= ProjectStage.Filming) *@
+@* { *@
+@*     <partial name="_Stage3_Shooting" model="Model" /> *@
+@* } *@
+@* *@
+@* <!-- Этап 4: Монтаж --> *@
+@* @if (stage >= ProjectStage.VideoEditing) *@
+@* { *@
+@*     <partial name="_Stage4_Editing" model="Model" /> *@
+@* } *@
+
+<!-- Этап 5: Отчет -->
+@if (stage >= ProjectStage.Complete)
+{
+    <partial name="_Stage5_Report" model="Model" />
+}

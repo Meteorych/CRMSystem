@@ -1,0 +1,66 @@
+﻿@model WebApplication1.Data.Models.Project
+
+@{
+    var userIsManager = User.IsInRole("Manager");
+    var userIsClient = User.IsInRole("Client");
+    ViewBag.Description = Model.ProjectComments.FirstOrDefault(pc => pc.CommentStage == ProjectStage.TechTask)?.CommentText ?? string.Empty;
+    bool disableFields = !string.IsNullOrEmpty(ViewBag.Description);
+    var disabledAttr = disableFields ? "disabled" : null;
+}
+
+<h4 class="mb-3">Stage 1: Technical Specification</h4>
+@if (Model.ProjectStage == ProjectStage.TechTask)
+{
+    @if (userIsClient)
+    {
+        <form asp-controller="Project" asp-action="SubmitTechTask" asp-route-projectId="@Model.Id" method="post"
+              enctype="multipart/form-data">
+            <div class="mt-2 mb-3">
+                <label for="techTaskDescription" class="mb-2">Description</label>
+                <textarea id="techTaskDescription" name="techTaskDescription" class="form-control" minlength="15"
+                          maxlength="1000" rows="5" @disabledAttr>@ViewBag.Description</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="techTaskFile">Attach file (optional)</label>
+                <input id="techTaskFile" type="file" name="techTaskFile" class="form-control" @disabledAttr/>
+            </div>
+            <button type="submit" class="btn btn-primary" @disabledAttr>Submit</button>
+        </form>
+    }
+
+    @if (userIsManager)
+    {
+        <p style="margin-bottom: 10px"><strong>Client's tech task:</strong></p>
+        <p>@ViewBag.Description</p>
+
+        @if (Model.TechTask.File is not null)
+        {
+            <form asp-controller="Project" method="get" asp-action="DownloadTechTaskFile">
+                <input type="hidden" name="projectId" value="@Model.Id"/>
+                <button type="submit" class="btn btn-outline-primary">Download Attached File</button>
+            </form>
+        }
+    }
+
+    @if (userIsClient && !string.IsNullOrEmpty(ViewBag.Description))
+    {
+        <form asp-controller="Project" class="mt-2" asp-action="ApproveTechTask" method="post">
+            <input type="hidden" name="projectId" value="@Model.Id"/>
+            <button type="submit" class="btn btn-success">Approve and Proceed</button>
+        </form>
+    }
+}
+
+@if (Model.ProjectStage > ProjectStage.TechTask)
+{
+    <div class="alert alert-success">Technical specification approved</div>
+    <p>@Model.ProjectComments.FirstOrDefault(pc => pc.CommentStage == ProjectStage.TechTask)?.CommentText</p>
+
+    @if (Model.TechTask.File is not null)
+    {
+        <form method="get" asp-controller="Project" asp-action="DownloadTechTaskFile">
+            <input type="hidden" name="projectId" value="@Model.Id"/>
+            <button type="submit" class="btn btn-outline-primary">Download Attached File</button>
+        </form>
+    }
+}

@@ -9,5 +9,5 @@ public class ProjectComment
     
     [MaxLength(1000)]
     public required string CommentText { get; set; }
-    public required ApplicationUser User { get; set; }
+    public ApplicationUser User { get; set; } = null!;
 }
