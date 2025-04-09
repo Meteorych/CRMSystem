@@ -250,7 +250,6 @@ public class ProjectController(ApplicationDbContext context) : Controller
     [Authorize(Roles = AuthConstants.ClientRole)]
     public async Task<IActionResult> SubmitTechTask(Guid projectId, [StringLength(1000, MinimumLength = 15)] string techTaskDescription, IFormFile? techTaskFile)
     {
-        //TODO: Save file name
         if (!ModelState.IsValid)
             return BadRequest("Wrong arguments!");
         
@@ -275,6 +274,7 @@ public class ProjectController(ApplicationDbContext context) : Controller
             await techTaskFile.CopyToAsync(stream);
             stream.Position = 0;
 
+            project.TechTask.FileName = techTaskFile.FileName;
             project.TechTask.File = stream.ToArray();
         }
 
@@ -312,7 +312,7 @@ public class ProjectController(ApplicationDbContext context) : Controller
 
         var fileBytes = project.TechTask.File;
         const string contentType = "application/octet-stream";
-        var fileName = $"TechTask_{project.ProjectNumber}.bin";
+        var fileName = project.TechTask.FileName;
 
         return File(fileBytes, contentType, fileName);
     }

@@ -8,22 +8,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1054afb4-8446-4647-81e2-f60ad5393ada" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage1_TechTask.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage5_Report.cshtml" afterDir="false" />
+    <list default="true" id="310df22f-5bad-4651-9e1a-381d5ec1cbb8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources/88077d6c-3564-45ae-b8f4-d3a0a510e5cf.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources/88077d6c-3564-45ae-b8f4-d3a0a510e5cf/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/sonarlint.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Areas/Identity/Pages/Account/Register.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Areas/Identity/Pages/Account/Register.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Areas/Identity/Pages/Account/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Areas/Identity/Pages/Account/Login.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Controllers/ProjectController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Controllers/ProjectController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Data/Models/ProjectComment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Data/Models/ProjectComment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Data/Models/TechTask.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Data/Models/TechTask.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Migrations/20250320062332_SmallModelChanges.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Migrations/20250320062332_SmallModelChanges.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/Create.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/Create.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/Details.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/Details.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/Edit.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/Edit.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/WebApplication1.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/WebApplication1.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage1_TechTask.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage1_TechTask.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Shared/_Layout.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/app.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/app.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/app.db-shm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/app.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/app.db-wal" afterDir="false" />
@@ -39,36 +39,32 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0a54a17868f848f88047ef760d90c9b3f930/d2/6aa7ecc2/Expression`1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3ae4d12f88864bcabb42e5c25b579a8430930/0a/37cd1e93/StaticAssetsEndpointRouteBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6753b151eaf047d495c4b9d5fde32208291020/2a/6ba05356/ModelValidator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a59156b1c00242bd9549c57369c41c3a30930/9f/e27df406/DatabaseGeneratedOption.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a6b7f037ba7b44df80b8d3aa7e58eeb2e8e938/4d/54a7c9b1/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/283f1ac699feafcc961c75e7f82d54f59737a0ae442079f46a3577167ba680/IdentityUserContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/294078ecfce6fdb942ecfee089f09717de7a6fcfe5efd9fdb6f4f93c0fb4813/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6888d268113295cfcdc76a84c4c278e42377eae2c9e6648376871d19143c89c4/RazorPageBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7d382df578ec93391918cfaa4ce7f4b8f35c9aed1241d6556dc9be26df13c/IdentityUser.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8e25cce28490c87faaf15522967e96692c1829b521f6b7a4fc8bde524eec/IdentityRole.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ab3c8be2195122efa7fdf652df26d8a03a51ccb73e2f26d7ad3e76e4e852d/StringLengthAttribute.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b12bc6498a3360a42c1edc9e39638cd444af4976e6e5b143698067eb2f30/RazorView.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d858ddb35a8e36df5573b7612542f9ad50f426b8ab43818587d1ac65fab14829/DatabaseGeneratedAttribute.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9342fb513b7b524925c79d9822cd3ecaf072c50231aa3b469875f4c2cdf/IdentityDbContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApplication1/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApplication1/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApplication1/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApplication1/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="KubernetesApiPersistence">{}</component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Meteorych&quot;
+  }
 }</component>
-  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Meteorych/DiplomaOfNadya.git&quot;,
+    &quot;accountId&quot;: &quot;cfe48153-3a70-4a51-8478-d48395362a35&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/WebApplication1/Views/Project/Details.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/НадюшкинсПроект/WebApplication1/WebApplication1/Views/Project/_Stage1_TechTask.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 6
 }</component>
-  <component name="ProjectId" id="2uUoncpXG0ULlC8hxdlDRAs2pv3" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2vVFzonXfz44LtPKlgL4BEzMOuX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -78,7 +74,6 @@
     ".NET Launch Settings Profile.WebApplication1: http.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "com.codeium.enabled": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
@@ -89,6 +84,12 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.sourceCode.C#",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver.localdb",
+      "sqlite"
+    ]
   }
 }]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: http">
@@ -126,80 +127,22 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1054afb4-8446-4647-81e2-f60ad5393ada" name="Changes" comment="" />
-      <created>1742312683842</created>
+      <changelist id="310df22f-5bad-4651-9e1a-381d5ec1cbb8" name="Changes" comment="" />
+      <created>1744222600398</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1742312683842</updated>
-      <workItem from="1742312684276" duration="11152000" />
-      <workItem from="1742401869016" duration="12456000" />
-      <workItem from="1742449698861" duration="5148000" />
-      <workItem from="1742509140896" duration="526000" />
-      <workItem from="1742724597465" duration="421000" />
-      <workItem from="1742744123399" duration="2684000" />
-      <workItem from="1742752599303" duration="49000" />
-      <workItem from="1744126884127" duration="12899000" />
+      <updated>1744222600398</updated>
+      <workItem from="1744222602623" duration="550000" />
+      <workItem from="1744223185946" duration="4827000" />
     </task>
-    <task id="LOCAL-00001" summary="Working version of project">
-      <option name="closed" value="true" />
-      <created>1742459455584</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1742459455584</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
-  <component name="UnknownFeatures">
-    <option featureType="dependencySupport" implementationName="executable:docker" />
-    <option featureType="dependencySupport" implementationName="dotnet:Microsoft.Identity.Client" />
-    <option featureType="dependencySupport" implementationName="executable:kubectl" />
-    <option featureType="dependencySupport" implementationName="dotnet:Microsoft.EntityFrameworkCore.Abstractions" />
-    <option featureType="dependencySupport" implementationName="dotnet:Microsoft.EntityFrameworkCore.Relational" />
-    <option featureType="dependencySupport" implementationName="dotnet:Microsoft.EntityFrameworkCore" />
-  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Changes to project" />
-    <MESSAGE value="Working version of project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working version of project" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WebApplication1/Controllers/ProjectController.cs</url>
-          <line>304</line>
-          <properties documentPath="D:\НадюшкинсПроект\WebApplication1\WebApplication1\Controllers\ProjectController.cs" containingFunctionPresentation="Method 'DownloadTechTaskFile'">
-            <startOffsets>
-              <option value="8818" />
-            </startOffsets>
-            <endOffsets>
-              <option value="8950" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WebApplication1/Controllers/ProjectController.cs</url>
-          <line>295</line>
-          <properties documentPath="D:\НадюшкинсПроект\WebApplication1\WebApplication1\Controllers\ProjectController.cs" containingFunctionPresentation="Method 'ApproveTechTask'">
-            <startOffsets>
-              <option value="8546" />
-            </startOffsets>
-            <endOffsets>
-              <option value="8589" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
