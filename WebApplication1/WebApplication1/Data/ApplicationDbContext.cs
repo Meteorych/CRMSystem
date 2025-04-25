@@ -40,4 +40,27 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 .IsRequired();
         });
     }
+    
+    public override int SaveChanges()
+    {
+        SetCreatedTimestamps();
+        return base.SaveChanges();
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
+    {
+        SetCreatedTimestamps();
+        return base.SaveChangesAsync(cancellationToken);
+    }
+    
+    private void SetCreatedTimestamps()
+    {
+        var entries = ChangeTracker.Entries<ProjectComment>()
+            .Where(e => e.State == EntityState.Added);
+
+        foreach (var entry in entries)
+        {
+            entry.Entity.CreatedAt = DateTimeOffset.UtcNow;
+        }
+    }
 }

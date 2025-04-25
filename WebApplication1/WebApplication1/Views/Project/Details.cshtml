@@ -5,30 +5,136 @@
     var stage = Model.ProjectStage;
 }
 
-<h2>Project: @Model.Name</h2>
+<h2>Проект: @Model.Name</h2>
 
-<partial name="_Stage1_TechTask" model = "Model" />
+<div class="accordion" id="accordionPanels">
+    <!-- Stage 1: Technical Specification -->
+    <div class="accordion-item">
+        <h2 class="accordion-header bg-light" id="heading1" style="background-color: #e3f2fd">
+            <button class="accordion-button collapsed @((stage < ProjectStage.TechTask) ? "disabled" : "")"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    aria-expanded="false"
+                    data-bs-target="#collapse1"
+                    aria-controls="collapse1">
+                Техническое задание
+            </button>
+        </h2>
+        <div id="collapse1" class="accordion-collapse collapse @(stage == ProjectStage.TechTask ? "show" : "")" aria-labelledby="heading1">
+            <div class="accordion-body">
+                @if (stage >= ProjectStage.TechTask)
+                {
+                    <partial name="_Stage1_TechTask" model="Model" />
+                }
+                else
+                {
+                    <div class="text-muted">Этот раздел станет доступен, когда проект достигнет стадии «Техническое задание».</div>
+                }
+            </div>
+        </div>
+    </div>
 
-@* <!-- Этап 2: Сценарии --> *@
-@* @if (stage >= ProjectStage.Script) *@
-@* { *@
-@*     <partial name="_Stage2_Scripts" for="Video" /> *@
-@* } *@
-@* *@
-@* <!-- Этап 3: Съемка --> *@
-@* @if (stage >= ProjectStage.Filming) *@
-@* { *@
-@*     <partial name="_Stage3_Shooting" model="Model" /> *@
-@* } *@
-@* *@
-@* <!-- Этап 4: Монтаж --> *@
-@* @if (stage >= ProjectStage.VideoEditing) *@
-@* { *@
-@*     <partial name="_Stage4_Editing" model="Model" /> *@
-@* } *@
+    <!-- Stage 2: Scripts -->
+    <div class="accordion-item">
+        <h2 class="accordion-header bg-light" id="heading2" style="background-color: #e3f2fd">
+            <button class="accordion-button collapsed @((stage < ProjectStage.Script) ? "disabled" : "")"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse2"
+                    aria-expanded="false"
+                    aria-controls="collapse2">
+                Сценарий
+            </button>
+        </h2>
+        <div id="collapse2" class="accordion-collapse collapse @(stage == ProjectStage.Script ? "show" : "")" aria-labelledby="heading2">
+            <div class="accordion-body">
+                @if (stage >= ProjectStage.Script)
+                {
+                    <partial name="_Stage2_Scripts" model="Model"/>
+                }
+                else
+                {
+                    <div class="text-muted">Этот раздел станет доступен, когда проект достигнет стадии «Сценарий».</div>
+                }
+            </div>
+        </div>
+    </div>
 
-<!-- Этап 5: Отчет -->
-@if (stage >= ProjectStage.Complete)
-{
-    <partial name="_Stage5_Report" model="Model" />
-}
+    <!-- Stage 3: Filming -->
+    <div class="accordion-item">
+        <h2 class="accordion-header bg-light" id="heading3" style="background-color: #e3f2fd">
+            <button class="accordion-button @((stage != ProjectStage.Filming) ? "collapsed" : "")"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse3"
+                    aria-expanded="false"
+                    aria-controls="collapse3">
+                Съёмка
+            </button>
+        </h2>
+        <div id="collapse3" class="accordion-collapse collapse @(stage == ProjectStage.Filming ? "show" : "")" aria-labelledby="heading3">
+            <div class="accordion-body">
+                @if (stage >= ProjectStage.Filming)
+                {
+                    <partial name="_Stage3_Filming" model="Model" />
+                }
+                else
+                {
+                    <div class="text-muted">Этот раздел станет доступен, когда проект достигнет стадии «Съёмка».</div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage 4: Video Editing -->
+    <div class="accordion-item">
+        <h2 class="accordion-header bg-light" id="heading4" style="background-color: #e3f2fd">
+            <button class="accordion-button @((stage != ProjectStage.VideoEditing) ? "collapsed" : "")"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse4"
+                    aria-expanded="false"
+                    aria-controls="collapse4">
+                Монтаж видео
+            </button>
+        </h2>
+        <div id="collapse4" class="accordion-collapse collapse @(stage == ProjectStage.VideoEditing ? "show" : "")" aria-labelledby="heading4">
+            <div class="accordion-body">
+                @if (stage >= ProjectStage.VideoEditing)
+                {
+                    <partial name="_Stage4_Editing" model="Model" />
+                }
+                else
+                {
+                    <div class="text-muted">Этот раздел станет доступен, когда проект достигнет стадии «Монтаж видео».</div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage 5: Final Report -->
+    <div class="accordion-item">
+        <h2 class="accordion-header bg-light" id="heading5" style="background-color: #e3f2fd">
+            <button class="accordion-button @((stage != ProjectStage.Complete) ? "collapsed" : "")"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse5"
+                    aria-expanded="false"
+                    aria-controls="collapse5">
+                Финальный отчёт
+            </button>
+        </h2>
+        <div id="collapse5" class="accordion-collapse collapse @(stage == ProjectStage.Complete ? "show" : "")" aria-labelledby="heading5">
+            <div class="accordion-body">
+                @if (stage >= ProjectStage.Complete)
+                {
+                    <partial name="_Stage5_Report" model="Model" />
+                }
+                else
+                {
+                    <div class="text-muted">Этот раздел станет доступен, когда проект достигнет стадии «Финальный отчёт».</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

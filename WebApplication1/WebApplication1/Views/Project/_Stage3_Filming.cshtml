@@ -1,0 +1,39 @@
+﻿@using WebApplication1.Constants
+@model Project
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    bool isClient = User.IsInRole(AuthConstants.ClientRole);
+    bool isManager = User.IsInRole(AuthConstants.ManagerRole);
+    var comments = Model.ProjectComments
+        .Where(c => c.CommentStage == ProjectStage.Filming)
+        .OrderBy(c => c.CreatedAt)
+        .ToList();
+}
+
+<h4>Обсуждение съёмки</h4>
+
+<div class="chat-box border rounded p-3 mb-3" style="max-height: 300px; overflow-y: auto;">
+    @foreach (var comment in comments)
+    {
+        <div class="mb-2">
+            <strong>@comment.User.UserName:</strong>
+            <span>@comment.CommentText</span>
+            <small class="text-muted">(@comment.CreatedAt.ToLocalTime())</small>
+        </div>
+    }
+</div>
+
+<form asp-action="PostFilmingComment" asp-controller="ScriptStage" method="post">
+    <input type="hidden" name="projectId" value="@Model.Id" />
+    <textarea name="message" class="form-control mb-2" placeholder="Введите сообщение..."></textarea>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+
+@if (isManager && Model.ProjectStage == ProjectStage.Filming)
+{
+    <form asp-action="CompleteFilming" asp-controller="ScriptStage" method="post" class="mt-3">
+        <input type="hidden" name="projectId" value="@Model.Id" />
+        <button type="submit" class="btn btn-success">Завершить съёмку и перейти к этапу 4</button>
+    </form>
+}

@@ -1,0 +1,109 @@
+﻿@using WebApplication1.Constants
+@model Project
+
+@{
+    bool isClient = User.IsInRole(AuthConstants.ClientRole);
+    bool isManager = User.IsInRole(AuthConstants.ManagerRole);
+}
+
+@if (Model.Video is null && isManager)
+{
+    <h4>Создание сценария видео</h4>
+    <form asp-controller="ScriptStage" asp-action="CreateVideo" method="post">
+        <input type="hidden" name="projectId" value="@Model.Id" />
+        
+        <div class="mb-3">
+            <label class="form-label">Сценарий</label>
+            <textarea name="Script" class="form-control" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ссылка на референс</label>
+            <input name="Reference" type="url" class="form-control" placeholder="https://example.com" required />
+        </div>
+
+        <button type="submit" class="btn btn-success">Создать сценарий</button>
+    </form>
+}
+else if (Model.Video is not null)
+{
+    <table class="table table-bordered">
+        <thead class="table-info">
+        <tr>
+            <th>№ Видео</th>
+            <th>Сценарий</th>
+            <th>Референс</th>
+            <th>Комментарий клиента</th>
+            <th>Статус</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>@Model.Video.VideoNumber</td>
+            <td>
+                @if (isManager && Model.Video.Status == ScriptStatus.Correction)
+                {
+                    <textarea required name="Script" form="updateVideoForm" class="form-control">@Model.Video.Script</textarea>
+                }
+                else
+                {
+                    @Model.Video.Script
+                }
+            </td>
+            <td>
+                @if (isManager && Model.Video.Status == ScriptStatus.Correction)
+                {
+                    <input required name="Reference" form="updateVideoForm" value="@Model.Video.Reference" type="url" class="form-control" />
+                }
+                else
+                {
+                    <a href="@Model.Video.Reference" target="_blank">Ссылка</a>
+                }
+            </td>
+            <td>
+                @if (isClient)
+                {
+                    <input name="clientComment" class="form-control" form="submitScriptForm" />
+                }
+                else
+                {
+                    @Model.ProjectComments.FirstOrDefault(pr => pr.CommentStage == ProjectStage.Script)?.CommentText
+                }
+            </td>
+            <td>
+                @if (isClient)
+                {
+                    <select name="status" class="form-select" form="submitScriptForm">
+                        <option value="Approved" selected="@(Model.Video.Status == ScriptStatus.Approved)">Согласовано</option>
+                        <option value="Correction" selected="@(Model.Video.Status == ScriptStatus.Correction)">Правки</option>
+                    </select>
+                }
+                else
+                {
+                    @Model.Video.Status
+                }
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    @if (isClient)
+    {
+        <form id="submitScriptForm" asp-controller="ScriptStage" asp-action="SubmitScript" method="post">
+            <input type="hidden" name="projectId" value="@Model.Id" />
+            <button type="submit" class="btn btn-primary">Отправить клиентский ответ</button>
+        </form>
+    }
+
+    @if (isManager && Model.Video.Status == ScriptStatus.Correction)
+    {
+        <form id="updateVideoForm" asp-controller="ScriptStage" asp-action="UpdateVideo" method="post">
+            <input type="hidden" name="projectId" value="@Model.Id" />
+            <button type="submit" class="btn btn-primary">Обновить сценарий</button>
+        </form>
+    }
+}
+else
+{
+    <p class="text-muted">Сценарий в процессе создания менеджером.</p>
+}

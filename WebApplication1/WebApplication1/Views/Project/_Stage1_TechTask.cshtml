@@ -10,7 +10,7 @@
 
 <div class="card shadow-sm rounded-4 mb-4">
     <div class="card-body">
-        <h4 class="card-title mb-4">Stage 1: Technical Specification</h4>
+        <h4 class="card-title mb-4">Этап 1: Техническое задание</h4>
 
         @if (Model.ProjectStage == ProjectStage.TechTask)
         {
@@ -19,21 +19,20 @@
                 <form asp-controller="Project" asp-action="SubmitTechTask" asp-route-projectId="@Model.Id" method="post"
                       enctype="multipart/form-data">
                     <div class="mb-4">
-                        <label for="techTaskDescription" class="form-label fw-semibold">Describe your
-                            requirements</label>
-                        <textarea id="techTaskDescription" name="techTaskDescription" class="form-control rounded-3"
+                        <label for="techTaskDescription" class="form-label fw-semibold">Опишите ваши требования</label>
+                        <textarea id="techTaskDescription" name="techTaskDescription" data-provide="markdown" class="form-control rounded-3"
                                   minlength="15" maxlength="1000" rows="5"
-                                  placeholder="Provide a detailed description..."
+                                  placeholder="Предоставьте подробное описание..."
                                   @disabledAttr>@ViewBag.Description</textarea>
                     </div>
 
                     <div class="mb-4">
-                        <label for="techTaskFile" class="form-label fw-semibold">Attach file (optional)</label>
+                        <label for="techTaskFile" class="form-label fw-semibold">Прикрепите файл (необязательно)</label>
                         <input id="techTaskFile" type="file" name="techTaskFile" class="form-control" @disabledAttr/>
                     </div>
 
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary px-4" @disabledAttr>Submit</button>
+                        <button type="submit" class="btn btn-primary px-4" @disabledAttr>Отправить</button>
                     </div>
                 </form>
             }
@@ -41,14 +40,14 @@
             @if (userIsManager)
             {
                 <div class="border-top pt-4 mt-4">
-                    <h5 class="fw-bold mb-3">Client's Submitted Tech Task</h5>
-                    <p class="mb-3 text-muted">@(string.IsNullOrEmpty(ViewBag.Description) ? "Tech task is not provided yet" : ViewBag.Description)</p>
+                    <h5 class="fw-bold mb-3">Техническое задание клиента</h5>
+                    <p class="mb-3 text-muted">@(string.IsNullOrEmpty(ViewBag.Description) ? "Техническое задание еще не предоставлено" : ViewBag.Description)</p>
 
                     @if (Model.TechTask.File is not null)
                     {
                         <form asp-controller="Project" method="get" asp-action="DownloadTechTaskFile">
                             <input type="hidden" name="projectId" value="@Model.Id"/>
-                            <button type="submit" class="btn btn-outline-primary">Download Attached File</button>
+                            <button type="submit" class="btn btn-outline-primary">Скачать прикрепленный файл</button>
                         </form>
                     }
                 </div>
@@ -58,7 +57,7 @@
             {
                 <form asp-controller="Project" class="mt-4" asp-action="ApproveTechTask" method="post">
                     <input type="hidden" name="projectId" value="@Model.Id"/>
-                    <button type="submit" class="btn btn-success w-100 py-2 rounded-3">Submit and Proceed</button>
+                    <button type="submit" class="btn btn-success w-100 py-2 rounded-3">Отправить и продолжить</button>
                 </form>
             }
         }
@@ -66,7 +65,7 @@
         @if (Model.ProjectStage > ProjectStage.TechTask)
         {
             <div class="alert alert-success mt-4">
-                <strong>Approved:</strong> The technical specification has been reviewed and accepted.
+                <strong>Утверждено:</strong> Техническое задание было рассмотрено и принято.
             </div>
 
             <p class="mb-3">@Model.ProjectComments.FirstOrDefault(pc => pc.CommentStage == ProjectStage.TechTask)?.CommentText</p>
@@ -75,14 +74,14 @@
             {
                 <form method="get" asp-controller="Project" asp-action="DownloadTechTaskFile">
                     <input type="hidden" name="projectId" value="@Model.Id"/>
-                    <button type="submit" class="btn btn-outline-primary">Download Attached File</button>
+                    <button type="submit" class="btn btn-outline-primary">Скачать прикрепленный файл</button>
                 </form>
             }
         }
         else if (!string.IsNullOrEmpty(ViewBag.Description))
         {
             <div class="alert alert-secondary mt-4">
-                Technical specification has been submitted but is not yet approved.
+                Техническое задание было отправлено, но еще не утверждено.
             </div>
         }
     </div>

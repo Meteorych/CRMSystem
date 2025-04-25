@@ -257,6 +257,9 @@ namespace WebApplication1.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("TEXT");
 
