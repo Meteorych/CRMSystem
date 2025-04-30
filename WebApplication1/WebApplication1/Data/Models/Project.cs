@@ -18,9 +18,11 @@ public class Project
     public ProjectStage ProjectStage { get; set; }
     
     public required TechTask TechTask { get; set; }
-    public Video? Video { get; set; }
-    public List<ProjectComment> ProjectComments { get; set; } = [];
+    public ICollection<Video> Videos { get; set; } = [];
+    public ICollection<ProjectComment> ProjectComments { get; set; } = [];
     
     public required ApplicationUser Manager { get; set; }
     public required ApplicationUser Client { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public DateTimeOffset CompletedAt { get; set; }
 }

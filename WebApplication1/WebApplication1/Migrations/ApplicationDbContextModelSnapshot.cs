@@ -217,6 +217,12 @@ namespace WebApplication1.Migrations
                     b.Property<Guid>("ClientId")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTimeOffset>("CompletedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("TEXT");
+
                     b.Property<Guid>("ManagerId")
                         .HasColumnType("TEXT");
 
@@ -262,6 +268,9 @@ namespace WebApplication1.Migrations
 
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("TEXT");
+
+                    b.Property<int?>("RelatedVideoNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("TEXT");
@@ -364,8 +373,12 @@ namespace WebApplication1.Migrations
                                 .HasForeignKey("ProjectId");
                         });
 
-                    b.OwnsOne("WebApplication1.Data.Models.Video", "Video", b1 =>
+                    b.OwnsMany("WebApplication1.Data.Models.Video", "Videos", b1 =>
                         {
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("INTEGER");
+
                             b1.Property<Guid>("ProjectId")
                                 .HasColumnType("TEXT");
 
@@ -388,12 +401,14 @@ namespace WebApplication1.Migrations
                             b1.Property<string>("VideoUri")
                                 .HasColumnType("TEXT");
 
-                            b1.HasKey("ProjectId");
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("ProjectId");
 
                             b1.HasIndex("VideoNumber")
                                 .IsUnique();
 
-                            b1.ToTable("Projects");
+                            b1.ToTable("Video");
 
                             b1.WithOwner()
                                 .HasForeignKey("ProjectId");
@@ -406,7 +421,7 @@ namespace WebApplication1.Migrations
                     b.Navigation("TechTask")
                         .IsRequired();
 
-                    b.Navigation("Video");
+                    b.Navigation("Videos");
                 });
 
             modelBuilder.Entity("WebApplication1.Data.Models.ProjectComment", b =>

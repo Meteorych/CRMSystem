@@ -1,41 +1,57 @@
 @model WebApplication1.Data.Models.Project
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Редактирование проекта";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<h4>Project</h4>
-<hr />
-<div class="row">
+<h1 class="justify-content-center">@ViewData["Title"]</h1>
+<hr/>
+<div class="row justify-content-center">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label">Project name</label>
-                <input asp-for="Name" class="form-control" />
+            
+            <div style="width: 100%" class="form-group">
+                <label asp-for="Name" class="control-label">Название проекта
+                    <input required asp-for="Name" class="form-control" />
+                </label>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Manager.UserName" class="control-label"></label>
-                <select asp-for="Manager.UserName" class="form-control" asp-items="ViewBag.ManagerName"></select>
+
+            <div style="width: 100%" class="form-group">
+                <label asp-for="Manager.UserName" class="control-label">
+                    Менеджер
+                    <select asp-for="Manager.UserName" class="form-control" asp-items="ViewBag.ManagerName"></select>
+                </label>
                 <span asp-validation-for="Manager.UserName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Client.UserName" class="control-label"></label>
-                <select asp-for="Client.UserName" class="form-control" asp-items="ViewBag.ClientName"></select>
+
+            <div style="width: 100%" class="form-group">
+                <label asp-for="Client.UserName" class="control-label">
+                    Клиент
+                    <select asp-for="Client.UserName" class="form-control" asp-items="ViewBag.ClientName"></select>
+                </label>
                 <span asp-validation-for="Client.UserName" class="text-danger"></span>
             </div>
-            <div class="form-group mt-2">
-                <input type="submit" value="Save" class="btn btn-primary" />
+
+            <div style="width: 100%" class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
+
+        <a asp-action="Index">Вернуться к списку</a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+<style>
+    .form-group {
+        margin-top: 10px;
+    }
+    input, select {
+        width: 100%;
+    }
+    label {
+        width: 100%;
+    }
+</style>

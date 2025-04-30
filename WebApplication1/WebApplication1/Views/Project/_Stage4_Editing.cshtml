@@ -1,8 +1,104 @@
-﻿@model dynamic
+﻿@model Project
+@using WebApplication1.Constants
 
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+    var isClient = User.IsInRole(AuthConstants.ClientRole);
+    var isManager = User.IsInRole(AuthConstants.ManagerRole);
 }
 
-<h2>title</h2>
+@if (Model.Videos.Any())
+{
+    <table class="table table-bordered">
+        <thead class="table-info">
+        <tr>
+            <th>№ Видео</th>
+            <th>Ссылка на готовое видео</th>
+            <th>Сценарий</th>
+            <th>Референс</th>
+            <th>Комментарий клиента</th>
+            <th>Статус</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var video in Model.Videos.OrderBy(v => v.VideoNumber))
+        {
+            <tr>
+                <td>@video.VideoNumber</td>
+
+                <td>
+                    @if (isManager && (video.Status == ScriptStatus.Correction || video.VideoUri == null))
+                    {
+                        <input required name="FinalVideoLink" form="updateVideoForm-@video.VideoNumber"
+                               value="@video.VideoUri" type="url" class="form-control"
+                               placeholder="https://example.com/"/>
+                    }
+                    else if (video.VideoUri != null)
+                    {
+                        <a href="@video.VideoUri" target="_blank">Смотреть</a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Видео ещё не загружено</span>
+                    }
+                </td>
+
+                <td>@video.Script</td>
+                <td><a href="@video.Reference" target="_blank">Ссылка</a></td>
+
+                <td>
+                    @if (isClient)
+                    {
+                        <input name="ClientComment" class="form-control"
+                               value="@(Model.ProjectComments.FirstOrDefault(c => c.RelatedVideoNumber == video.VideoNumber && c.CommentStage == ProjectStage.VideoEditing)?.CommentText ?? "")"
+                               form="submitFinalVideoForm-@video.VideoNumber"/>
+                    }
+                    else
+                    {
+                        @Model.ProjectComments.FirstOrDefault(c => c.RelatedVideoNumber == video.VideoNumber && c.CommentStage == ProjectStage.VideoEditing)?.CommentText
+                    }
+                </td>
+
+                <td>
+                    @{var disabled = video.Status == ScriptStatus.Approved ? "disabled" : null}
+                    @if (isClient)
+                    {
+                        <form id="submitFinalVideoForm-@video.VideoNumber" asp-controller="ScriptStage"
+                              asp-action="SubmitFinalVideo" method="post">
+                            <input type="hidden" name="projectId" value="@Model.Id"/>
+                            <input type="hidden" name="videoId" value="@video.VideoNumber"/>
+                            <select name="status" class="form-select" @disabled>
+                                <option value="Approved" selected="@(video.Status == ScriptStatus.Approved)">
+                                    Согласовано
+                                </option>
+                                <option value="Correction" selected="@(video.Status == ScriptStatus.Correction)">
+                                    Правки
+                                </option>
+                            </select>
+                            <button type="submit" class="btn btn-primary mt-1" @disabled>Отправить</button>
+                        </form>
+                    }
+                    else
+                    {
+                        @video.Status
+                    }
+                </td>
+            </tr>
+
+            @if (isManager && (video.Status == ScriptStatus.Correction || video.VideoUri == null))
+            {
+                <form id="updateVideoForm-@video.VideoNumber" asp-controller="ScriptStage"
+                      asp-action="UpdateFinalVideoLink" method="post">
+                    <input type="hidden" name="projectId" value="@Model.Id"/>
+                    <input type="hidden" name="videoId" value="@video.VideoNumber"/>
+                    <input type="hidden" name="FinalVideoLink"/>
+                    <button type="submit" class="btn btn-success mt-1">Обновить ссылку</button>
+                </form>
+            }
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-muted">Видео ещё не готово.</p>
+}

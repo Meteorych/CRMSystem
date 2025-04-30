@@ -2,16 +2,17 @@
 @model Project
 
 @{
-    bool isClient = User.IsInRole(AuthConstants.ClientRole);
-    bool isManager = User.IsInRole(AuthConstants.ManagerRole);
+    var isClient = User.IsInRole(AuthConstants.ClientRole);
+    var isManager = User.IsInRole(AuthConstants.ManagerRole);
 }
 
-@if (Model.Video is null && isManager)
+@if (Model.Videos.Count == 0 && isManager)
 {
     <h4>Создание сценария видео</h4>
+
     <form asp-controller="ScriptStage" asp-action="CreateVideo" method="post">
-        <input type="hidden" name="projectId" value="@Model.Id" />
-        
+        <input type="hidden" name="projectId" value="@Model.Id"/>
+
         <div class="mb-3">
             <label class="form-label">Сценарий</label>
             <textarea name="Script" class="form-control" required></textarea>
@@ -19,13 +20,13 @@
 
         <div class="mb-3">
             <label class="form-label">Ссылка на референс</label>
-            <input name="Reference" type="url" class="form-control" placeholder="https://example.com" required />
+            <input name="Reference" type="url" class="form-control" placeholder="https://example.com" required/>
         </div>
 
         <button type="submit" class="btn btn-success">Создать сценарий</button>
     </form>
 }
-else if (Model.Video is not null)
+else if (Model.Videos.Any())
 {
     <table class="table table-bordered">
         <thead class="table-info">
@@ -38,72 +39,102 @@ else if (Model.Video is not null)
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>@Model.Video.VideoNumber</td>
-            <td>
-                @if (isManager && Model.Video.Status == ScriptStatus.Correction)
+        @foreach (var video in Model.Videos.OrderBy(v => v.VideoNumber))
+        {
+            <tr>
+                <td>@video.VideoNumber</td>
+                <td>
+                    @if (isManager && video.Status == ScriptStatus.Correction)
+                    {
+                        <textarea name="Script" form="updateVideoForm-@video.VideoNumber"
+                                  class="form-control">@video.Script</textarea>
+                    }
+                    else
+                    {
+                        @video.Script
+                    }
+                </td>
+                <td>
+                    @if (isManager && video.Status == ScriptStatus.Correction)
+                    {
+                        <input name="Reference" form="updateVideoForm-@video.VideoNumber" value="@video.Reference"
+                               type="url" class="form-control"/>
+                    }
+                    else
+                    {
+                        <a href="@video.Reference" target="_blank">Ссылка на видео</a>
+                    }
+                </td>
+                <td>
+                    @if (isClient)
+                    {
+                        <input name="clientComment" class="form-control" form="submitScriptForm-@video.VideoNumber"/>
+                    }
+                    else
+                    {
+                        @Model.ProjectComments.FirstOrDefault(pr => pr.RelatedVideoNumber == video.VideoNumber)?.CommentText
+                    }
+                </td>
+                <td>
+                    @if (isClient)
+                    {
+                        <form id="submitScriptForm-@video.VideoNumber" asp-controller="ScriptStage"
+                              asp-action="ApproverVideo" method="post">
+                            <input type="hidden" name="projectId" value="@Model.Id"/>
+                            <input type="hidden" name="videoId" value="@video.VideoNumber"/>
+                            <select name="status" class="form-select">
+                                <option value="Approved" selected="@(video.Status == ScriptStatus.Approved)">
+                                    Согласовано
+                                </option>
+                                <option value="Correction" selected="@(video.Status == ScriptStatus.Correction)">
+                                    Правки
+                                </option>
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-sm mt-1">Отправить</button>
+                        </form>
+                    }
+                    else
+                    {
+                        @video.Status
+                    }
+                </td>
+                @if (isManager && video.Status == ScriptStatus.Correction)
                 {
-                    <textarea required name="Script" form="updateVideoForm" class="form-control">@Model.Video.Script</textarea>
+                    <td>
+                    <form id="updateVideoForm-@video.VideoNumber" asp-controller="ScriptStage" asp-action="UpdateVideo"
+                          method="post">
+                        <input type="hidden" name="projectId" value="@Model.Id"/>
+                        <input type="hidden" name="videoId" value="@video.VideoNumber"/>
+                        <button type="submit" class="btn btn-sm btn-primary mt-1">Обновить сценарий</button>
+                    </form>
+                    </td>
                 }
-                else
-                {
-                    @Model.Video.Script
-                }
-            </td>
-            <td>
-                @if (isManager && Model.Video.Status == ScriptStatus.Correction)
-                {
-                    <input required name="Reference" form="updateVideoForm" value="@Model.Video.Reference" type="url" class="form-control" />
-                }
-                else
-                {
-                    <a href="@Model.Video.Reference" target="_blank">Ссылка</a>
-                }
-            </td>
-            <td>
-                @if (isClient)
-                {
-                    <input name="clientComment" class="form-control" form="submitScriptForm" />
-                }
-                else
-                {
-                    @Model.ProjectComments.FirstOrDefault(pr => pr.CommentStage == ProjectStage.Script)?.CommentText
-                }
-            </td>
-            <td>
-                @if (isClient)
-                {
-                    <select name="status" class="form-select" form="submitScriptForm">
-                        <option value="Approved" selected="@(Model.Video.Status == ScriptStatus.Approved)">Согласовано</option>
-                        <option value="Correction" selected="@(Model.Video.Status == ScriptStatus.Correction)">Правки</option>
-                    </select>
-                }
-                else
-                {
-                    @Model.Video.Status
-                }
-            </td>
-        </tr>
+            </tr>
+
+            
+        }
         </tbody>
     </table>
-
-    @if (isClient)
-    {
-        <form id="submitScriptForm" asp-controller="ScriptStage" asp-action="SubmitScript" method="post">
-            <input type="hidden" name="projectId" value="@Model.Id" />
-            <button type="submit" class="btn btn-primary">Отправить клиентский ответ</button>
-        </form>
-    }
-
-    @if (isManager && Model.Video.Status == ScriptStatus.Correction)
-    {
-        <form id="updateVideoForm" asp-controller="ScriptStage" asp-action="UpdateVideo" method="post">
-            <input type="hidden" name="projectId" value="@Model.Id" />
-            <button type="submit" class="btn btn-primary">Обновить сценарий</button>
-        </form>
-    }
 }
-else
+
+@if (isManager && Model.ProjectStage == ProjectStage.Script && Model.Videos.Any(v => v.Status != ScriptStatus.Approved))
+{
+    <h5>Добавить новое видео</h5>
+
+    <form asp-controller="ScriptStage" asp-action="CreateVideo" method="post">
+        <input type="hidden" name="projectId" value="@Model.Id"/>
+        <div class="mb-2">
+            <label class="form-label">Сценарий</label>
+            <textarea name="Script" class="form-control" required></textarea>
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Ссылка на референс</label>
+            <input name="Reference" type="url" class="form-control" required/>
+        </div>
+        <button type="submit" class="btn btn-success">Добавить видео</button>
+    </form>
+}
+else if (Model.Videos.Count == 0)
 {
     <p class="text-muted">Сценарий в процессе создания менеджером.</p>
 }

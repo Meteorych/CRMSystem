@@ -23,7 +23,7 @@
                         <textarea id="techTaskDescription" name="techTaskDescription" data-provide="markdown" class="form-control rounded-3"
                                   minlength="15" maxlength="1000" rows="5"
                                   placeholder="Предоставьте подробное описание..."
-                                  @disabledAttr>@ViewBag.Description</textarea>
+                                  @disabledAttr>@(ViewBag.Description ?? "")</textarea>
                     </div>
 
                     <div class="mb-4">

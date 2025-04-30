@@ -22,5 +22,13 @@ public class ProjectConfiguration : IEntityTypeConfiguration<Project>
             .HasMany(pr => pr.ProjectComments)
             .WithOne()
             .HasForeignKey(pr => pr.ProjectId);
+
+        builder
+            .OwnsMany(pr => pr.Videos, v =>
+            {
+                v.WithOwner().HasForeignKey("ProjectId");
+                v.Property<int>("Id");
+                v.HasKey("Id");
+            });
     }
 }

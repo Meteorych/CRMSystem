@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContextPool<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
@@ -36,7 +36,6 @@ using (var scope = app.Services.CreateScope())
 
     await SeedRolesAsync(roleManager);
 }
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

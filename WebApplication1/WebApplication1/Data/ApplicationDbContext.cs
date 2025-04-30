@@ -55,12 +55,26 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     
     private void SetCreatedTimestamps()
     {
-        var entries = ChangeTracker.Entries<ProjectComment>()
-            .Where(e => e.State == EntityState.Added);
+        var entries = ChangeTracker.Entries()
+            .Where(e => e is { State: EntityState.Added, Entity: Project or ProjectComment })
+            .ToList();
+        
+        var projectEntries = entries
+            .Where(e => e.Entity is Project)
+            .Select(e => (Project)e.Entity);
 
-        foreach (var entry in entries)
+        var commentEntries = entries
+            .Where(e => e.Entity is ProjectComment)
+            .Select(e => (ProjectComment)e.Entity);
+
+        foreach (var entry in projectEntries)
         {
-            entry.Entity.CreatedAt = DateTimeOffset.UtcNow;
+            entry.CreatedAt = DateTimeOffset.UtcNow;
+        }
+
+        foreach (var entry in commentEntries)
+        {
+            entry.CreatedAt = DateTimeOffset.UtcNow;
         }
     }
 }

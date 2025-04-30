@@ -2,16 +2,16 @@
 
 
 @{
-    ViewBag.Title = "Users";
+    ViewBag.Title = "Пользователи";
 }
 
-<h2>Users</h2>
+<h2>Пользователи</h2>
 
 
 <table class="table table-bordered table-striped">
     <tr>
-        <th>User Name</th>
-        <th>User Role</th>
+        <th>Имя пользователя</th>
+        <th>Роль пользователя</th>
     </tr>
     @foreach (var user in Model)
     {
@@ -36,7 +36,7 @@
                             </select>
                         </div>
                         <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Change Role</button>
+                            <button type="submit" class="btn btn-primary">Изменить роль</button>
                         </div>
                     </div>
                 </form>

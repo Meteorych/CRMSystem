@@ -9,25 +9,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="310df22f-5bad-4651-9e1a-381d5ec1cbb8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WebApplication1/Controllers/ScriptStageController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage2_Scripts.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage3_Filming.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage4_Editing.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project's demo.mp4" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApplication1/Constants/EnumExtensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Areas/Identity/Pages/Account/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Areas/Identity/Pages/Account/Login.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Areas/Identity/Pages/Account/Register.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Areas/Identity/Pages/Account/Register.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Controllers/ScriptStageController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Controllers/ScriptStageController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Data/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Data/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Data/Configurations/ProjectConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Data/Configurations/ProjectConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Data/Models/Enums/ProjectStage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Data/Models/Enums/ProjectStage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Data/Models/Project.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Data/Models/Project.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Data/Models/ProjectComment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Data/Models/ProjectComment.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/Details.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/Details.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/Create.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/Create.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/Edit.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/Edit.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/Index.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage1_TechTask.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage1_TechTask.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Shared/_Layout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage2_Scripts.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage2_Scripts.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage3_Filming.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage3_Filming.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage4_Editing.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage4_Editing.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage5_Report.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage5_Report.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Shared/_LoginPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Shared/_LoginPartial.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/User/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/User/Index.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/WebApplication1.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/WebApplication1.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/app.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/app.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/app.db-shm" afterDir="false" />
@@ -59,10 +64,14 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/76803a04e31b4fee99d90bcbfc5a6bdde8e930/62/feb5107b/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fb30046922fa42d48db089b2878b2e163b908/a9/608b9cc1/RazorPage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0dd62246a2e461c8be7bcfbeb8f1ddbdf4dc9151b91d7548ca1ba9ca20a9e8/FormTagHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/294078ecfce6fdb942ecfee089f09717de7a6fcfe5efd9fdb6f4f93c0fb4813/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8e25cce28490c87faaf15522967e96692c1829b521f6b7a4fc8bde524eec/IdentityRole.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9a6b1457cbcf17db31a383ba49ef9bcc786cf3ef77146d997eee499b27a46d/Object.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WebApplication1/Views/Project/Details.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WebApplication1/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WebApplication1/wwwroot/lib/jquery/dist/jquery.min.map" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -78,30 +87,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.WebApplication1: http.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;HotReloadSettingsPage&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.WebApplication1: http.executor": "Debug",
+    ".NET Launch Settings Profile.WebApplication1: https.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "HotReloadSettingsPage",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlserver.localdb&quot;,
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver.localdb",
+      "sqlite"
     ]
   }
-}</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: http">
+}]]></component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: https">
     <configuration name="WebApplication1: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApplication1/WebApplication1.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net9.0" />
@@ -150,8 +161,22 @@
       <workItem from="1745530101999" duration="621000" />
       <workItem from="1745603155016" duration="7106000" />
       <workItem from="1745611031417" duration="18000" />
-      <workItem from="1745611091082" duration="494000" />
+      <workItem from="1745611091082" duration="2103000" />
+      <workItem from="1745674165820" duration="10357000" />
+      <workItem from="1745911695463" duration="663000" />
+      <workItem from="1745912545759" duration="12000" />
+      <workItem from="1745958852314" duration="4519000" />
+      <workItem from="1746036300800" duration="1437000" />
     </task>
+    <task id="LOCAL-00001" summary="A lot of cool new stages">
+      <option name="closed" value="true" />
+      <created>1745612995024</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745612995024</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,6 +186,8 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="A lot of cool new stages" />
+    <option name="LAST_COMMIT_MESSAGE" value="A lot of cool new stages" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -179,29 +206,29 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WebApplication1/Controllers/ScriptStageController.cs</url>
-          <line>16</line>
+          <line>17</line>
           <properties documentPath="D:\НадюшкинсПроект\WebApplication1\WebApplication1\Controllers\ScriptStageController.cs" containingFunctionPresentation="Method 'CreateVideo'">
             <startOffsets>
-              <option value="536" />
+              <option value="559" />
             </startOffsets>
             <endOffsets>
-              <option value="560" />
+              <option value="583" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WebApplication1/Controllers/ScriptStageController.cs</url>
-          <line>80</line>
-          <properties documentPath="D:\НадюшкинсПроект\WebApplication1\WebApplication1\Controllers\ScriptStageController.cs" containingFunctionPresentation="Method 'SubmitScript'">
+          <line>76</line>
+          <properties documentPath="D:\НадюшкинсПроект\WebApplication1\WebApplication1\Controllers\ScriptStageController.cs" containingFunctionPresentation="Method 'ApproverVideo'">
             <startOffsets>
-              <option value="2913" />
+              <option value="2486" />
             </startOffsets>
             <endOffsets>
-              <option value="2949" />
+              <option value="2510" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="6" />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,10 +1,8 @@
 ﻿@using WebApplication1.Constants
 @model Project
-@inject IHttpContextAccessor HttpContextAccessor
 
 @{
-    bool isClient = User.IsInRole(AuthConstants.ClientRole);
-    bool isManager = User.IsInRole(AuthConstants.ManagerRole);
+    var isManager = User.IsInRole(AuthConstants.ManagerRole);
     var comments = Model.ProjectComments
         .Where(c => c.CommentStage == ProjectStage.Filming)
         .OrderBy(c => c.CreatedAt)

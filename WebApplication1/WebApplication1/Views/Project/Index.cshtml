@@ -57,10 +57,12 @@
                 <tbody>
                 @foreach (var item in Model.ActiveProjects)
                 {
-                    <tr class="clickable-row position-relative" data-href="@Url.Action("Details", new { id = item.Id })" style="cursor: pointer;">
+                    <tr class="clickable-row position-relative" data-href="@Url.Action("Details", new { id = item.Id })"
+                        style="cursor: pointer;">
                         <td>@Html.DisplayFor(modelItem => item.ProjectNumber)</td>
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.ProjectStage)</td>
+                        <td>@{ var stage = item.ProjectStage.GetDisplayName(); }
+                            @Html.DisplayFor(modelItem => stage)</td>
                         <td>@Html.DisplayFor(modelItem => item.Manager.UserName)</td>
                         <td>@Html.DisplayFor(modelItem => item.Client.UserName)</td>
 
@@ -75,7 +77,6 @@
                             </td>
                         }
                     </tr>
-
                 }
                 </tbody>
             </table>
@@ -96,17 +97,19 @@
                     <th>№ проекта</th>
                     <th>Название</th>
                     <th>Стадия</th>
-                    <th>Менеджер</th>   
+                    <th>Менеджер</th>
                     <th>Клиент</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach (var item in Model.CompletedProjects)
                 {
-                    <tr class="clickable-row" data-href="@Url.Action("Details", new { id = item.Id })" style="cursor: pointer;">
+                    <tr class="clickable-row" data-href="@Url.Action("Details", new { id = item.Id })"
+                        style="cursor: pointer;">
                         <td>@Html.DisplayFor(modelItem => item.ProjectNumber)</td>
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.ProjectStage)</td>
+                        <td>@{ var stage = item.ProjectStage.GetDisplayName(); }
+                            @Html.DisplayFor(modelItem => stage)</td>
                         <td>@Html.DisplayFor(modelItem => item.Manager.UserName)</td>
                         <td>@Html.DisplayFor(modelItem => item.Client.UserName)</td>
                     </tr>
@@ -130,5 +133,5 @@
             });
         });
     });
-    
+
 </script>
