@@ -1,4 +1,4 @@
-@model WebApplication1.Data.Models.Project
+@model WebApplication1.Controllers.ProjectController.UpdateProjectDto
 
 @{
     ViewData["Title"] = "Редактирование проекта";
@@ -20,19 +20,19 @@
             </div>
 
             <div style="width: 100%" class="form-group">
-                <label asp-for="Manager.UserName" class="control-label">
+                <label asp-for="ManagerName" class="control-label">
                     Менеджер
-                    <select asp-for="Manager.UserName" class="form-control" asp-items="ViewBag.ManagerName"></select>
+                    <select asp-for="ManagerName" class="form-control" asp-items="ViewBag.ManagerName"></select>
                 </label>
-                <span asp-validation-for="Manager.UserName" class="text-danger"></span>
+                <span asp-validation-for="ManagerName" class="text-danger"></span>
             </div>
 
             <div style="width: 100%" class="form-group">
-                <label asp-for="Client.UserName" class="control-label">
+                <label asp-for="ClientName" class="control-label">
                     Клиент
-                    <select asp-for="Client.UserName" class="form-control" asp-items="ViewBag.ClientName"></select>
+                    <select asp-for="ClientName" class="form-control" asp-items="ViewBag.ClientName"></select>
                 </label>
-                <span asp-validation-for="Client.UserName" class="text-danger"></span>
+                <span asp-validation-for="ClientName" class="text-danger"></span>
             </div>
 
             <div style="width: 100%" class="form-group">

@@ -62,11 +62,12 @@ else if (Model.Videos.Any())
                     }
                     else
                     {
-                        <a href="@video.Reference" target="_blank">Ссылка на видео</a>
+                        <a href="@video.Reference" target="_blank">Ссылка</a>
                     }
                 </td>
                 <td>
-                    @if (isClient)
+                    @{ var disabled = video.Status == ScriptStatus.Approved ? "disabled" : null;}
+                    @if (isClient && disabled is null)
                     {
                         <input name="clientComment" class="form-control" form="submitScriptForm-@video.VideoNumber"/>
                     }
@@ -82,7 +83,7 @@ else if (Model.Videos.Any())
                               asp-action="ApproverVideo" method="post">
                             <input type="hidden" name="projectId" value="@Model.Id"/>
                             <input type="hidden" name="videoId" value="@video.VideoNumber"/>
-                            <select name="status" class="form-select">
+                            <select name="status" class="form-select" @disabled>
                                 <option value="Approved" selected="@(video.Status == ScriptStatus.Approved)">
                                     Согласовано
                                 </option>
@@ -90,7 +91,7 @@ else if (Model.Videos.Any())
                                     Правки
                                 </option>
                             </select>
-                            <button type="submit" class="btn btn-primary btn-sm mt-1">Отправить</button>
+                            <button type="submit" class="btn btn-primary btn-sm mt-1" @disabled>Отправить</button>
                         </form>
                     }
                     else

@@ -67,9 +67,7 @@ public class ScriptStageController(ApplicationDbContext context) : Controller
 
         return RedirectToAction("Details", "Project", new { id = projectId });
     }
-
-    [HttpPost]
-    [Route("ScriptStage/ApproverVideo")]
+    
     [Authorize(Roles = AuthConstants.ClientRole)]
     public async Task<IActionResult> ApproverVideo(Guid projectId, int videoId, ScriptStatus status,
         string clientComment)
@@ -148,12 +146,20 @@ public class ScriptStageController(ApplicationDbContext context) : Controller
         if (!ModelState.IsValid)
             return BadRequest(InvalidArgumentsMessage);
 
-        var project = await context.Projects.FindAsync(projectId);
+        var project = await context.Projects
+            .Include(pr => pr.Videos)
+            .FirstAsync(pr => pr.Id == projectId);
 
         if (project is not { ProjectStage: ProjectStage.Filming })
             return NotFound();
 
         project.ProjectStage = ProjectStage.VideoEditing;
+
+        foreach (var video in project.Videos)
+        {
+            video.Status = ScriptStatus.Correction;
+        }
+
         await context.SaveChangesAsync();
 
         return RedirectToAction("Details", "Project", new { id = projectId });
@@ -184,7 +190,8 @@ public class ScriptStageController(ApplicationDbContext context) : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> SubmitFinalVideo(Guid projectId, int videoId, ScriptStatus status, string clientComment)
+    public async Task<IActionResult> SubmitFinalVideo(Guid projectId, int videoId, ScriptStatus status,
+        string clientComment)
     {
         if (!ModelState.IsValid)
             return BadRequest(InvalidArgumentsMessage);
@@ -196,9 +203,9 @@ public class ScriptStageController(ApplicationDbContext context) : Controller
 
         if (project == null)
             return NotFound();
-        
+
         var video = project.Videos.FirstOrDefault(v => v.VideoNumber == videoId);
-        
+
         if (video == null)
             return NotFound("Video is not found!");
 
@@ -216,9 +223,9 @@ public class ScriptStageController(ApplicationDbContext context) : Controller
             RelatedVideoNumber = video.VideoNumber
         };
 
-        
+
         project.ProjectComments.Add(comment);
-        
+
         if (project.Videos.All(v => v.Status == ScriptStatus.Approved))
             project.ProjectStage = ProjectStage.Complete;
 

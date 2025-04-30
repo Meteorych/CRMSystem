@@ -49,7 +49,7 @@
                     @if (isClient)
                     {
                         <input name="ClientComment" class="form-control"
-                               value="@(Model.ProjectComments.FirstOrDefault(c => c.RelatedVideoNumber == video.VideoNumber && c.CommentStage == ProjectStage.VideoEditing)?.CommentText ?? "")"
+                               placeholder="@(Model.ProjectComments.FirstOrDefault(c => c.RelatedVideoNumber == video.VideoNumber && c.CommentStage == ProjectStage.VideoEditing)?.CommentText ?? "")"
                                form="submitFinalVideoForm-@video.VideoNumber"/>
                     }
                     else
@@ -59,7 +59,7 @@
                 </td>
 
                 <td>
-                    @{var disabled = video.Status == ScriptStatus.Approved ? "disabled" : null}
+                    @{ var disabled = video.Status == ScriptStatus.Approved ? "disabled" : null; }
                     @if (isClient)
                     {
                         <form id="submitFinalVideoForm-@video.VideoNumber" asp-controller="ScriptStage"
@@ -82,18 +82,21 @@
                         @video.Status
                     }
                 </td>
-            </tr>
 
-            @if (isManager && (video.Status == ScriptStatus.Correction || video.VideoUri == null))
-            {
-                <form id="updateVideoForm-@video.VideoNumber" asp-controller="ScriptStage"
-                      asp-action="UpdateFinalVideoLink" method="post">
-                    <input type="hidden" name="projectId" value="@Model.Id"/>
-                    <input type="hidden" name="videoId" value="@video.VideoNumber"/>
-                    <input type="hidden" name="FinalVideoLink"/>
-                    <button type="submit" class="btn btn-success mt-1">Обновить ссылку</button>
-                </form>
-            }
+                @if (isManager && (video.Status == ScriptStatus.Correction || video.VideoUri == null))
+                {
+                    <td>
+                        <form id="updateVideoForm-@video.VideoNumber" asp-controller="ScriptStage"
+                              asp-action="UpdateFinalVideoLink" method="post">
+                            <input type="hidden" name="projectId" value="@Model.Id"/>
+                            <input type="hidden" name="videoId" value="@video.VideoNumber"/>
+                            <input type="hidden" name="FinalVideoLink"/>
+                            <button type="submit" class="btn btn-success mt-1">Обновить ссылку</button>
+                        </form>
+                    </td>
+                }
+
+            </tr>   
         }
         </tbody>
     </table>

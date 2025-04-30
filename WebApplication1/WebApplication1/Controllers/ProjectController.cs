@@ -11,7 +11,7 @@ public class ProjectController(ApplicationDbContext context) : Controller
 {
     private const string UserName = "UserName";
 
-    public class CreateProjectDto
+    public record CreateProjectDto
     {
         public required string ClientName { get; set; }
         public required string ManagerName { get; set; }
@@ -20,6 +20,12 @@ public class ProjectController(ApplicationDbContext context) : Controller
         public required string Name { get; set; }
     }
 
+    public record UpdateProjectDto : CreateProjectDto
+    {
+        public Guid Id { get; set; }
+    }
+
+
     // GET: Project
     public async Task<IActionResult> Index(string? searchTerm)
     {
@@ -27,7 +33,8 @@ public class ProjectController(ApplicationDbContext context) : Controller
 
         IQueryable<Project> query = context.Projects
             .Include(p => p.Manager)
-            .Include(p => p.Client);
+            .Include(p => p.Client)
+            .OrderByDescending(pr => pr.CreatedAt);
 
         if (!User.IsInRole(AuthConstants.AdminRole))
         {
@@ -154,26 +161,40 @@ public class ProjectController(ApplicationDbContext context) : Controller
         ViewData["ManagerName"] = new SelectList(GetUsersByRole(AuthConstants.ManagerRole), UserName, UserName,
             project.Manager.UserName);
 
-        return View(project);
+        return View(new UpdateProjectDto
+        {
+            ClientName = project.Client.UserName!,
+            ManagerName = project.Manager.UserName!,
+            Id = project.Id,
+            Name = project.Name
+        });
     }
 
     // POST: Project/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(Guid id,
-        [Bind("Id,ProjectNumber,ManagerId,ClientId,Name,ProjectStage")]
-        Project project)
+    public async Task<IActionResult> Edit(Guid id, UpdateProjectDto updateProjectDto)
     {
-        if (id != project.Id)
+        if (id != updateProjectDto.Id)
         {
             return NotFound();
         }
+
+        var client = await context.Users.FirstAsync(u => u.UserName == updateProjectDto.ClientName);
+        var manager = await context.Users.FirstAsync(u => u.UserName == updateProjectDto.ManagerName);
+
+        var project = await context.Projects
+            .Include(pr => pr.Manager)
+            .Include(pr => pr.Client)
+            .FirstAsync(pr => pr.Id == id);
 
         if (ModelState.IsValid)
         {
             try
             {
-                context.Update(project);
+                project.ClientId = client.Id;
+                project.ManagerId = manager.Id;
+                project.Name = updateProjectDto.Name;
                 await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -189,18 +210,19 @@ public class ProjectController(ApplicationDbContext context) : Controller
             return RedirectToAction(nameof(Index));
         }
 
-        project = await context.Projects
-            .Include(pr => pr.Manager)
-            .Include(pr => pr.Client)
-            .FirstAsync(pr => pr.Id == id);
-
         ViewData["ClientName"] = new SelectList(GetUsersByRole(AuthConstants.ClientRole), UserName, UserName,
             project.Client.UserName);
 
         ViewData["ManagerName"] = new SelectList(GetUsersByRole(AuthConstants.ManagerRole), UserName, UserName,
             project.Manager.UserName);
 
-        return View(project);
+        return View(new UpdateProjectDto
+        {
+            ClientName = project.Client.UserName!,
+            ManagerName = project.Manager.UserName!,
+            Id = project.Id,
+            Name = project.Name
+        });
     }
 
     // GET: Project/Delete/5
@@ -248,17 +270,19 @@ public class ProjectController(ApplicationDbContext context) : Controller
 
     [HttpPost]
     [Authorize(Roles = AuthConstants.ClientRole)]
-    public async Task<IActionResult> SubmitTechTask(Guid projectId, [StringLength(1000, MinimumLength = 15)] string techTaskDescription, IFormFile? techTaskFile)
+    public async Task<IActionResult> SubmitTechTask(Guid projectId,
+        [StringLength(1000, MinimumLength = 15)]
+        string techTaskDescription, IFormFile? techTaskFile)
     {
         if (!ModelState.IsValid)
             return BadRequest("Wrong arguments!");
-        
+
         var project = await context.Projects
             .Include(p => p.TechTask)
             .Include(p => p.ProjectComments)
             .FirstOrDefaultAsync(p => p.Id == projectId);
 
-        if (project == null) 
+        if (project == null)
             return NotFound();
 
         project.ProjectComments.Add(new ProjectComment()
@@ -289,21 +313,22 @@ public class ProjectController(ApplicationDbContext context) : Controller
     {
         if (!ModelState.IsValid)
             return BadRequest("Wrong arguments!");
+
         var project = await context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
 
         if (project == null)
             return NotFound();
-        
+
         project.ProjectStage = ProjectStage.Script;
         await context.SaveChangesAsync();
 
         return RedirectToAction("Details", new { id = projectId });
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> DownloadTechTaskFile(Guid projectId)
     {
-            var project = await context.Projects
+        var project = await context.Projects
             .Include(p => p.TechTask)
             .FirstOrDefaultAsync(p => p.Id == projectId);
 
