@@ -9,15 +9,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="310df22f-5bad-4651-9e1a-381d5ec1cbb8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Controllers/ProjectController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Controllers/ProjectController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Controllers/ScriptStageController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Controllers/ScriptStageController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/Edit.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/Edit.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage2_Scripts.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage2_Scripts.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage3_Filming.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage3_Filming.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Data/Models/Video.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Data/Models/Video.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/Details.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/Details.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage4_Editing.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage4_Editing.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/app.db-shm" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/app.db-shm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/app.db-wal" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/app.db-wal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage5_Report.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Views/Project/_Stage5_Report.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/app.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/app.db-shm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/app.db-wal" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,10 +53,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9a6b1457cbcf17db31a383ba49ef9bcc786cf3ef77146d997eee499b27a46d/Object.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WebApplication1/Views/Project/Details.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/НадюшкинсПроект/WebApplication1/WebApplication1/Views/Project/_Stage1_TechTask.cshtml" root0="FORCE_HIGHLIGHTING" root1="SKIP_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/НадюшкинсПроект/WebApplication1/WebApplication1/Views/Project/_Stage2_Scripts.cshtml" root0="FORCE_HIGHLIGHTING" root1="SKIP_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/НадюшкинсПроект/WebApplication1/WebApplication1/Views/Shared/_LoginPartial.cshtml" root0="FORCE_HIGHLIGHTING" root1="SKIP_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WebApplication1/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WebApplication1/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WebApplication1/wwwroot/lib/jquery/dist/jquery.min.map" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -86,7 +86,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "HotReloadSettingsPage",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -150,7 +150,13 @@
       <workItem from="1745911695463" duration="663000" />
       <workItem from="1745912545759" duration="12000" />
       <workItem from="1745958852314" duration="4519000" />
-      <workItem from="1746036300800" duration="3850000" />
+      <workItem from="1746036300800" duration="4144000" />
+      <workItem from="1746652860938" duration="17000" />
+      <workItem from="1746737832299" duration="708000" />
+      <workItem from="1746739104254" duration="8000" />
+      <workItem from="1746880880571" duration="1025000" />
+      <workItem from="1747416677861" duration="3215000" />
+      <workItem from="1747566509768" duration="3989000" />
     </task>
     <task id="LOCAL-00001" summary="A lot of cool new stages">
       <option name="closed" value="true" />
@@ -168,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746038098673</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixes of everything">
+      <option name="closed" value="true" />
+      <created>1746040458826</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1746040458826</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,7 +194,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="A lot of cool new stages" />
     <MESSAGE value="Change db model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change db model" />
+    <MESSAGE value="Fixes of everything" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes of everything" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -198,45 +213,49 @@
           <option name="timeStamp" value="3" />
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WebApplication1/Controllers/ScriptStageController.cs</url>
-          <line>17</line>
-          <properties documentPath="D:\НадюшкинсПроект\WebApplication1\WebApplication1\Controllers\ScriptStageController.cs" containingFunctionPresentation="Method 'CreateVideo'">
-            <startOffsets>
-              <option value="559" />
-            </startOffsets>
-            <endOffsets>
-              <option value="583" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WebApplication1/Controllers/ProjectController.cs</url>
-          <line>189</line>
+          <line>191</line>
           <properties documentPath="D:\НадюшкинсПроект\WebApplication1\WebApplication1\Controllers\ProjectController.cs" containingFunctionPresentation="Method 'Edit'">
             <startOffsets>
-              <option value="5583" />
+              <option value="5685" />
             </startOffsets>
             <endOffsets>
-              <option value="5606" />
+              <option value="5708" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WebApplication1/Controllers/ProjectController.cs</url>
-          <line>181</line>
+          <line>183</line>
           <properties documentPath="D:\НадюшкинсПроект\WebApplication1\WebApplication1\Controllers\ProjectController.cs" containingFunctionPresentation="Method 'Edit'">
             <startOffsets>
-              <option value="5211" />
+              <option value="5313" />
             </startOffsets>
             <endOffsets>
-              <option value="5303" />
+              <option value="5405" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/WebApplication1/Controllers/ScriptStageController.cs</url>
+          <line>170</line>
+          <properties documentPath="D:\НадюшкинсПроект\WebApplication1\WebApplication1\Controllers\ScriptStageController.cs" containingFunctionPresentation="Method 'UpdateFinalVideoLink'">
+            <startOffsets>
+              <option value="5503" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5527" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

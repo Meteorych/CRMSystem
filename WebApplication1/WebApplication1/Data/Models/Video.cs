@@ -3,10 +3,8 @@
 namespace WebApplication1.Data.Models;
 
 [Owned]
-[Index(nameof(VideoNumber), IsUnique = true)]
 public class Video
 {
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int VideoNumber { get; set; }
     
     [MaxLength(10000)]

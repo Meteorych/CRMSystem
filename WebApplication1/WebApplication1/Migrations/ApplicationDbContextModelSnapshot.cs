@@ -395,7 +395,6 @@ namespace WebApplication1.Migrations
                                 .HasColumnType("nvarchar(16)");
 
                             b1.Property<int>("VideoNumber")
-                                .ValueGeneratedOnAdd()
                                 .HasColumnType("INTEGER");
 
                             b1.Property<string>("VideoUri")
@@ -404,9 +403,6 @@ namespace WebApplication1.Migrations
                             b1.HasKey("Id");
 
                             b1.HasIndex("ProjectId");
-
-                            b1.HasIndex("VideoNumber")
-                                .IsUnique();
 
                             b1.ToTable("Video");
 

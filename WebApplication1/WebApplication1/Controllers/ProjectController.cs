@@ -33,8 +33,7 @@ public class ProjectController(ApplicationDbContext context) : Controller
 
         IQueryable<Project> query = context.Projects
             .Include(p => p.Manager)
-            .Include(p => p.Client)
-            .OrderByDescending(pr => pr.CreatedAt);
+            .Include(p => p.Client);
 
         if (!User.IsInRole(AuthConstants.AdminRole))
         {
@@ -57,10 +56,12 @@ public class ProjectController(ApplicationDbContext context) : Controller
 
         var activeProjects = projects
             .Where(p => p.ProjectStage != ProjectStage.Complete)
+            .OrderByDescending(pr => pr.CreatedAt)
             .ToList();
 
         var completedProjects = projects
             .Where(p => p.ProjectStage == ProjectStage.Complete)
+            .OrderByDescending(pr => pr.CreatedAt)
             .ToList();
 
         var model = new ProjectIndexViewModel
